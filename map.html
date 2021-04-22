@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>myfirstmap</title>
+        <link rel="stylesheet" href="thirdparty/leaflet/leaflet.css">
+        <script src="thirdparty/leaflet/leaflet.js"></script>
+        </head>
+<body>
+        <h1>The map:</h1>
+        <div id='myFirstMap' style="height: 600px;"> </div>
+        <script>
+        var map= L.map('myFirstMap').setView([48.19722537806256, 16.37015461921692], 15);
+
+        L.marker([48.2,16.37]).bindPopup(`Hallo das ist unser erster Marker :)`).addTo(map);
+
+        var osm=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{attribution:'©<ahref="http://osm.org/copyright">OpenStreetMap</a>contributors'
+            }
+            ).addTo(map);
+
+
+</script>
+</body>
+</html>
+
+<!-- 2. Karte einbinden und Auswahl einpflegen
+
+-->
