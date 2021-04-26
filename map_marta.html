@@ -19,8 +19,9 @@
          <!-- </div> Die Idee hinter dieser div Klasse wäre die Grundlage für ein CSS zu schaffen-->
 
 
-    <script>
-        var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12);
+    <script>       
+       // map erstellen 
+       var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12);
 
        
         // basemaps
@@ -56,6 +57,36 @@
             .setLatLng([48.2,16.33])
             .setContent("Klicke auf die Marker um die <br> Art des Problems zu erfahren")
             .openOn(map);
+
+       
+        var myGeoJsonLayer= new L.geoJSON().addTo(map);
+
+        $.getJSON('data/linie.geojson',function(result){
+            myGeoJsonLayer.addData(result);
+            myGeoJsonLayer.bindPopup('Wichtiger Weg');
+            myGeoJsonLayer.bindTooltip('Das ist Tooltip');
+        });
+      
+       
+
+       
+
+        // var JsonStyle = L.geoJSON('data/linie.json', {style: function(feature) {
+        //     switch (feature.properties.xxxx) {
+        //         case '': return {color: ""}
+        //         case '': return {color: ""}
+        //         }
+        //         }
+        //  }).addTo(map)
+
+        // Layer Control
+
+        var layermap={
+            "Routes":myGeoJsonLayer,
+            "Offices":places
+            };
+
+        L.control.layers(baseMaps,layermap).addTo(map);
 
 
     </script>
