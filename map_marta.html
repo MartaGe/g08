@@ -46,11 +46,11 @@
             popupAnchor:  [-3, -76]
         });
                
-        var marker1 = L.marker([48.21798199057435,16.37907028198242], {icon: ownicon}).bindPopup('<b>Art des Problems</b><br>Gehweg zugeparkt').addTo(map);
-        var marker2 = L.marker([48.17791446461507,16.33581429719925]).bindPopup('<b>Art des Problems</b><br>Gehsteig zu schmal').addTo(map);
-        var marker3 = L.marker([48.17813445579481,16.38831853866577]).bindPopup('<b>Art des Problems</b><br>Katastrophe').addTo(map);
+        var marker1 = L.marker([48.21798199057435,16.37907028198242], {icon: ownicon}).bindPopup('<b>Art des Problems</b><br>Gehweg zugeparkt');
+        var marker2 = L.marker([48.17791446461507,16.33581429719925]).bindPopup('<b>Art des Problems</b><br>Gehsteig zu schmal');
+        var marker3 = L.marker([48.17813445579481,16.38831853866577]).bindPopup('<b>Art des Problems</b><br>Katastrophe');
         
-        var places = L.layerGroup(marker1,marker2,marker3);
+        var places = L.layerGroup([marker1,marker2,marker3]);
 
        
         // stand alone Pop-up (z.B. für Anleitung)
