@@ -59,9 +59,10 @@
             .openOn(map);
 
        
+        // GeoJSON Layer einfügen 
         var myGeoJsonLayer= new L.geoJSON().addTo(map);
 
-        $.getJSON('data/linie.geojson',function(result){
+        $.getJSON('data/linie.json',function(result){
             myGeoJsonLayer.addData(result);
             myGeoJsonLayer.bindPopup('Wichtiger Weg');
             myGeoJsonLayer.bindTooltip('Das ist Tooltip');
@@ -83,7 +84,7 @@
 
         var layermap={
             "Routes":myGeoJsonLayer,
-            "Offices":places
+            "Offices": places
             };
 
         L.control.layers(baseMaps,layermap).addTo(map);
