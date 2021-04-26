@@ -22,7 +22,7 @@
 
     <script>       
        // map erstellen 
-       var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12);
+       var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
 
        
         // basemaps
@@ -52,10 +52,10 @@
         var marker1 = L.marker([48.21798199057435,16.37907028198242], {icon: ownicon}).bindPopup('<b>Art des Problems</b><br>Gehweg zugeparkt');
         var marker2 = L.marker([48.17791446461507,16.33581429719925]).bindPopup('<b>Art des Problems</b><br>Gehsteig zu schmal');
         var marker3 = L.marker([48.17813445579481,16.38831853866577]).bindPopup('<b>Art des Problems</b><br>Katastrophe');
-        var marker4 = L.marker([48.21008,16.35203]).bindPopup('<b>Art des Problems</b><br>Gehseteig zu schmal');
+        var marker4 = L.marker([48.21008,16.35203]).bindPopup('<b>Art des Problems</b><br>Objekt am Gehsteig <img src="img/gehsteig1.jpg" style="width:75%;">');
 
         
-        var places = L.layerGroup([marker1,marker2,marker3]);
+        var places = L.layerGroup([marker1,marker2,marker3,marker4]);
 
        
         // stand alone Pop-up (z.B. für Anleitung)
@@ -68,20 +68,19 @@
         // GeoJSON Layer einfügen 
         var myGeoJsonLayer = L.geoJSON().addTo(map);
 
-        $.getJSON('data/map1.geojson',function(result){
+        $.getJSON('data/bereiche.geojson',function(result){
             myGeoJsonLayer.addData(result);
             myGeoJsonLayer.setStyle((feature)=>geoJsonStyle(feature))
             });
       
-        function geoJsonStyle (feature) {
-            console.log(feature);
-            var style = {
-                "weight": 2,
-                "color": "#FF0000"
+        function geoJsonStyle(feature) {
+            switch (feature.properties.category) {
+                case 'fuzo': return {color: "#ff6347"}
+                case 'gehsteig_breit': return {color: "#6e990f", weight: "8"}
+                case 'gehsteig_schmal': return {color: "#e0bd0f"}
+                }
             };
-            return style
-        }
-
+           
         // var JsonStyle = L.geoJSON('data/linie.json', {style: function(feature) {
         //     switch (feature.properties.xxxx) {
         //         case '': return {color: ""}
@@ -89,6 +88,12 @@
         //         }
         //         }
         //  }).addTo(map)
+
+
+           // console.log(feature);
+            // var style = {
+            //     "weight": 2,
+            //     "color": "#FF0000"
 
         // Layer Control
 
