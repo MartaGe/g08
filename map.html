@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-        <title>myfirstmap</title>
+<html lang=de>
+    <head>
+        <title>Zu Fuß in Wien interaktive Karte</title>
+        <!-- <link rel="stylesheet" href="style/map.css"> -->
+        <link rel="stylesheet " href="style/projekt.css">
         <link rel="stylesheet" href="thirdparty/leaflet/leaflet.css">
         <script src="thirdparty/leaflet/leaflet.js"></script>
-        <script src="thirdparty/jquery.3.6.0.min.js"></script>
-        </head>
-<body>
-        <h1>The map:</h1>
-        <div id='myFirstMap' style="height: 600px;"> </div>
-        <script>
-        var map= L.map('myFirstMap').setView([48.19722537806256, 16.37015461921692], 15);
+        <script src="thirparty/leaflet/leaflet-src.js.map"></script>
+        <script src="thirdparty/jquery-3.6.0.min.js"></script>
+        
+    </head>
 
-        L.marker([48.2,16.37]).bindPopup(`Hallo das ist unser erster Marker :)`).addTo(map);
+    <body>
+        <h1>Interaktive Karte</h1>
+        <br>
+        <h2>Achtung &#128679 die Karte ist noch in Arbeit</h2>
+        <p>Drücke auf die <b>Markierungen</b> auf der Karte um mehr Informationen zu
+            Problemlagen auf Gehsteigen und Gehwegen zu bekommen</p>
+        <br>
+        <!-- <div id="kartencontent" class="content"> -->
+        <div id='Karte' style="height:600px; width:900px;"> </div>
+         <!-- </div> Die Idee hinter dieser div Klasse wäre die Grundlage für ein CSS zu schaffen-->
 
-        var osm=L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{attribution:'©<ahref="http://osm.org/copyright">OpenStreetMap</a>contributors'
-            }
-            ).addTo(map);
+         <script src="scripts/map.js"></script>
+        <br>
+        <br>
+         <a href="index.html"> Hier geht's zurück zur Startseite </a>
 
+    </body>
 
-</script>
-</body>
 </html>
-
-<!-- 2. Karte einbinden und Auswahl einpflegen
-
--->

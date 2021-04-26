@@ -1,45 +1,73 @@
-var map= L.map('karte1').setView([48.19722537806256, 16.37015461921692], 15);
+     
+// map erstellen 
+var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
+
 
  // basemaps
 
- var OSM_norm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-        {attribution:'©<ahref="http://osm.org/copyright">OpenStreetMap</a>contributors'});
+ var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png',{
+     attribution:'©<ahref="http://osm.org/copyright">OpenStreetMap</a>contributors' }
+ ).addTo(map);
 
-var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-     attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-        });
+ var osm_bw = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+                 attribution: '©<ahref="http://osm.org/copyright">OpenStreetMap</a> contributors' }
+ ).addTo(map); 
 
-var baseMaps = {
-    "Open Street Map":OSM_norm,
-    "OpenTopoMap": OpenTopoMap
-};
+ var baseMaps = {
+     "Open Street Map":osm,
+     "Open Street Map B&W":osm_bw
+ };
 
-// Marker inkl. Gruppierung - irgendwas funktioniert noch nicht
-var mark1 = L.marker([48.2,16.37]).bindPopup(`PROBLEM1`);
+ // marker
 
-var mark2 = L.marker([48.22,16.38]).bindPopup(`PROBLEM2`);
+ var ownicon = L.icon({
+     iconUrl: 'img/icon.png',
+     iconSize: [50,50],
+     iconAnchor:[0,0],
+     popupAnchor:  [-3, -76]
+ });
+        
+ var marker1 = L.marker([48.21798199057435,16.37907028198242], {icon: ownicon}).bindPopup('<b>Art des Problems</b><br>Gehweg zugeparkt');
+ var marker2 = L.marker([48.17791446461507,16.33581429719925]).bindPopup('<b>Art des Problems</b><br>Gehsteig zu schmal');
+ var marker3 = L.marker([48.17813445579481,16.38831853866577]).bindPopup('<b>Art des Problems</b><br>Katastrophe');
+ var marker4 = L.marker([48.21008,16.35203]).bindPopup('<b>Art des Problems</b><br>Objekt am Gehsteig <img src="img/gehsteig1.jpg" style="width:75%;">');
 
-var places = L.layerGroup(mark1,mark2);
-
-// GeoJSON Layer
-
-var myGeoJsonLayer= L.geoJSON().addTo(map);
-$.getJSON('data/linie.geojson',function(result){
-        myGeoJsonLayer.addData(result);
-        myGeoJsonLayer.bindPopup('Wichtiger Weg');
-        myGeoJsonLayer.bindTooltip('Das ist Tooltip');
-    });
+ 
+ var places = L.layerGroup([marker1,marker2,marker3,marker4]).addTo(map);
 
 
+ // stand alone Pop-up (z.B. für Anleitung)
+ var popup = L.popup()
+     .setLatLng([48.2,16.33])
+     .setContent("Klicke auf die Marker um die <br> Art des Problems zu erfahren")
+     .openOn(map);
 
-// layer Ordnung und so
 
-var overlayMaps = {
-    "Orte": places,
-    "Route": myGeoJsonLayer
-};
+ // GeoJSON Layer einfügen 
+ var myGeoJsonLayer = L.geoJSON().addTo(map);
 
-L.control.layers(baseMaps,overlayMaps).addTo(map);
+ $.getJSON('data/bereiche.geojson',function(result){
+     myGeoJsonLayer.addData(result);
+     myGeoJsonLayer.setStyle((feature)=>geoJsonStyle(feature))
+     });
 
+ function geoJsonStyle(feature) {
+     switch (feature.properties.category) {
+         case 'fuzo': return {color: "#ff6347"}
+         case 'gehsteig_breit': return {color: "#6e990f", weight: "8"}
+         case 'gehsteig_schmal': return {color: "#e0bd0f"}
+         }
+     };
+    
+
+
+ // Layer Control
+
+ var layermap = {
+     "GeoJSON" : myGeoJsonLayer,
+     "Problemstellen": places
+     };
+
+ L.control.layers(baseMaps,layermap).addTo(map);
 
 
