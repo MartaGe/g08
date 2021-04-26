@@ -1,4 +1,3 @@
-<script>
 var map= L.map('karte1').setView([48.19722537806256, 16.37015461921692], 15);
 
  // basemaps
@@ -42,5 +41,5 @@ var overlayMaps = {
 
 L.control.layers(baseMaps,overlayMaps).addTo(map);
 
-</script> 
+
 
