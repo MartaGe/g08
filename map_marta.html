@@ -62,13 +62,19 @@
         // GeoJSON Layer einfügen 
         var myGeoJsonLayer = L.geoJSON().addTo(map);
 
-        $.getJSON('data/linie.geojson',function(result){
+        $.getJSON('data/map1.geojson',function(result){
             myGeoJsonLayer.addData(result);
+            myGeoJsonLayer.setStyle((feature)=>geoJsonStyle(feature))
             });
       
-       
-
-       
+        function geoJsonStyle (feature) {
+            console.log(feature);
+            var style = {
+                "weight": 2,
+                "color": "#FF0000"
+            };
+            return style;
+        }
 
         // var JsonStyle = L.geoJSON('data/linie.json', {style: function(feature) {
         //     switch (feature.properties.xxxx) {
@@ -80,9 +86,9 @@
 
         // Layer Control
 
-        var layermap={
-            "Routes":myGeoJsonLayer,
-            "Offices": places
+        var layermap = {
+            "GeoJSON" : myGeoJsonLayer,
+            "Problemstellen": places
             };
 
         L.control.layers(baseMaps,layermap).addTo(map);
