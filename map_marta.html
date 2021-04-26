@@ -60,7 +60,7 @@
 
        
         // GeoJSON Layer einfügen 
-        var myGeoJsonLayer= new L.geoJSON().addTo(map);
+        var myGeoJsonLayer = L.geoJSON().addTo(map);
 
         $.getJSON('data/linie.json',function(result){
             myGeoJsonLayer.addData(result);
