@@ -58,13 +58,20 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
          case 'gehsteig_schmal': return {color: "#e0bd0f"}
          }
      };
-    
+
+
+var Begegnungszonen = L.geoJSON().addTo(map);
+
+$.getJSON('data/begegnungszonen.geojson',function(result){
+         myGeoJsonLayer.addData(result);
+                });    
 
 
  // Layer Control
 
  var layermap = {
      "GeoJSON" : myGeoJsonLayer,
+     "Begegnungszonen": Begegnungszonen,
      "Problemstellen": places
      };
 
