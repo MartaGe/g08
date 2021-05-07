@@ -63,7 +63,8 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
 var Begegnungszonen = L.geoJSON().addTo(map);
 
 $.getJSON('data/begegnungszonen.geojson',function(result){
-         myGeoJsonLayer.addData(result);
+         Begegnungszonen.addData(result);
+         Begegnungszonen.setStyle({color: "#4B1BDE"})
                 });    
 
 
