@@ -64,12 +64,15 @@ var Begegnungszonen = L.geoJSON().addTo(map);
 
 $.getJSON('data/begegnungszonen.geojson',function(result){
          Begegnungszonen.addData(result);
-         Begegnungszonen.setStyle((feature)=>begegnungsstyle(feature))
-                });    
+                });   
+                
+                
+var Problemstellen = L.geoJSON().addTo(map);
+$.getJSON('data/problemstelle.geojson',function(result){
+    Begegnungszonen.addData(result);
+           });   
 
-function begegnungsstyle(feature) {
-     
-}
+
 
 
 
@@ -78,7 +81,7 @@ function begegnungsstyle(feature) {
  var layermap = {
     "GeoJSON" : myGeoJsonLayer,
     "Begegnungszonen": Begegnungszonen,
-    "Problemstellen": places
+    "Problemstellen": Problemstellen
      };
 
  L.control.layers(baseMaps,layermap).addTo(map);
