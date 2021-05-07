@@ -15,7 +15,7 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
 
  var baseMaps = {
      "Open Street Map":osm,
-     "Open Street Map B&W":osm_bw
+     "OSM grau":osm_bw
  };
 
  // marker
@@ -64,16 +64,21 @@ var Begegnungszonen = L.geoJSON().addTo(map);
 
 $.getJSON('data/begegnungszonen.geojson',function(result){
          Begegnungszonen.addData(result);
-         Begegnungszonen.setStyle({color: "#4B1BDE"})
+         Begegnungszonen.setStyle((feature)=>begegnungsstyle(feature))
                 });    
+
+function begegnungsstyle(feature) {
+     
+}
+
 
 
  // Layer Control
 
  var layermap = {
-     "GeoJSON" : myGeoJsonLayer,
-     "Begegnungszonen": Begegnungszonen,
-     "Problemstellen": places
+    "GeoJSON" : myGeoJsonLayer,
+    "Begegnungszonen": Begegnungszonen,
+    "Problemstellen": places
      };
 
  L.control.layers(baseMaps,layermap).addTo(map);
