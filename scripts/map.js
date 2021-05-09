@@ -59,14 +59,27 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
          }
      };
 
+// GeoJSON-Layer für Fußgänger- und Begegnungszonen (Layer "Zoneninfo")
+var Zoneninfo = L.geoJSON().addTo(map);
 
-var Begegnungszonen = L.geoJSON().addTo(map);
-
+// Begegnungszonen
 $.getJSON('data/begegnungszonen.geojson',function(result){
-         Begegnungszonen.addData(result);
+         Zoneninfo.addData(result);
                 });   
+
+// Fußgängerzonen
+$.getJSON('data/fussgaengerzone.geojson',function(result){
+    Zoneninfo.addData(result);
+           });   
+
+// GeoJSOn Layer für Wohnstraßen
+var wohnstrassen = L.geoJSON().addTo(map)
+$.getJSON('data/wohnstrassen.geojson',function(result){
+    wohnstrassen.addData(result)
+        });
+
                 
-                
+// Problemstellen        
 var Problemstellen = L.geoJSON().addTo(map);
 $.getJSON('data/problemstelle.geojson',function(result){
     Begegnungszonen.addData(result);
@@ -75,12 +88,11 @@ $.getJSON('data/problemstelle.geojson',function(result){
 
 
 
-
  // Layer Control
 
  var layermap = {
-    "GeoJSON" : myGeoJsonLayer,
-    "Begegnungszonen": Begegnungszonen,
+    "Wohnstrassen" : wohnstrassen,
+    "Begegnungs- und Fußgängerzonen": Zoneninfo,
     "Problemstellen": Problemstellen
      };
 
