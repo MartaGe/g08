@@ -1,6 +1,6 @@
      
 // map erstellen 
-var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
+var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
 
 
  // basemaps
@@ -69,7 +69,7 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
 // Problemstellen        
 var Problemstellen = L.geoJSON().addTo(map);
 $.getJSON('data/problemstelle.geojson',function(result){
-    Begegnungszonen.addData(result);
+    Problemstellen.addData(result);
            });   
 
 
