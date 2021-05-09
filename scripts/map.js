@@ -65,6 +65,12 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
     wohnstrassen.setStyle({color:"SlateBlue"})
         });
 
+// // Gehsteigbreiten mind. 2m --- ANMERKUNG: Dauert ziemlich lang zum laden
+// var gehsteig2m = L.geoJSON().addTo(map)
+// $.getJSON('data/gehsteig2m.geojson',function(result){
+//     gehsteig2m.addData(result);
+//     gehsteig2m.setStyle({color:"Yellow",opacity:"0.5",weight:"1"})
+//         });
                 
 // Problemstellen        
 var Problemstellen = L.geoJSON().addTo(map);
@@ -81,7 +87,8 @@ $.getJSON('data/problemstelle.geojson',function(result){
     "Wohnstrassen" : wohnstrassen,
     "Begegnungszonen": begegnungszonen,
     "Fußgängerzonen": fussgaengerzone,
-    "Problemstellen": Problemstellen
+    "Problemstellen": Problemstellen,
+    // "Gehsteig mindestens 2m breit": gehsteig2m
      };
 
  L.control.layers(baseMaps,layermap).addTo(map);
