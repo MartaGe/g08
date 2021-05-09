@@ -43,39 +43,26 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 13);
      .openOn(map);
 
 
- // GeoJSON Layer einfügen 
- var myGeoJsonLayer = L.geoJSON().addTo(map);
-
- $.getJSON('data/bereiche.geojson',function(result){
-     myGeoJsonLayer.addData(result);
-     myGeoJsonLayer.setStyle((feature)=>geoJsonStyle(feature))
-     });
-
- function geoJsonStyle(feature) {
-     switch (feature.properties.category) {
-         case 'fuzo': return {color: "#ff6347"}
-         case 'gehsteig_breit': return {color: "#6e990f", weight: "8"}
-         case 'gehsteig_schmal': return {color: "#e0bd0f"}
-         }
-     };
-
-// GeoJSON-Layer für Fußgänger- und Begegnungszonen (Layer "Zoneninfo")
-var Zoneninfo = L.geoJSON().addTo(map);
 
 // Begegnungszonen
+var begegnungszonen = L.geoJSON().addTo(map);
 $.getJSON('data/begegnungszonen.geojson',function(result){
-         Zoneninfo.addData(result);
+         begegnungszonen.addData(result);
+         begegnungszonen.setStyle({color:"Orange"})
                 });   
 
 // Fußgängerzonen
+var fussgaengerzone = L.geoJSON().addTo(map);
 $.getJSON('data/fussgaengerzone.geojson',function(result){
-    Zoneninfo.addData(result);
+    fussgaengerzone.addData(result);
+    fussgaengerzone.setStyle({color:"MediumSeaGreen"})
            });   
 
 // GeoJSOn Layer für Wohnstraßen
 var wohnstrassen = L.geoJSON().addTo(map)
 $.getJSON('data/wohnstrassen.geojson',function(result){
-    wohnstrassen.addData(result)
+    wohnstrassen.addData(result);
+    wohnstrassen.setStyle({color:"SlateBlue"})
         });
 
                 
@@ -92,7 +79,8 @@ $.getJSON('data/problemstelle.geojson',function(result){
 
  var layermap = {
     "Wohnstrassen" : wohnstrassen,
-    "Begegnungs- und Fußgängerzonen": Zoneninfo,
+    "Begegnungszonen": begegnungszonen,
+    "Fußgängerzonen": fussgaengerzone,
     "Problemstellen": Problemstellen
      };
 
