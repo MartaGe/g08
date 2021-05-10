@@ -82,18 +82,17 @@ $.getJSON('data/problemstelle.geojson',function(result){
  // Layer Control
 
  var layermap = {
-    "Wohnstrassen" : wohnstrassen,
-    "Begegnungszonen": begegnungszonen,
-    "Fußgängerzonen": fussgaengerzone,
+    "<img src='img/wohnstrasse_legende.PNG' height='20px' /> <span class= 'wohnstrassen'>Wohnstrassen</span>" : wohnstrassen,
+    "<img src='img/begegnungszone.PNG' height='20px'/> <span class= 'begegnungszonen'>Begegnungszonen</span>" : begegnungszonen,
+    "<img src='img/fussgaengerzone.PNG' height='20px'/> <span class= 'fussgaengerzone'>Fußgängerzonen</span>" : fussgaengerzone,
     "Problemstellen": Problemstellen,
     // "Gehsteig mindestens 2m breit": gehsteig2m
      };
 
  L.control.layers(baseMaps,layermap,{
             position: "topright",
-            collapsed:false, 
-            "<img/> <span"
+            collapsed:false,
             }).addTo(map);
 
-        {"<img src='my-layer-icon' /> <span class='my-layer-item'>My Layer</span>": myLayer}
+ s
 
