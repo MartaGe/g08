@@ -14,8 +14,8 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
  ).addTo(map); 
 
  var baseMaps = {
-     "Open Street Map":osm,
-     "OSM grau":osm_bw,
+     "Open Street Map bunt":osm,
+     "Open Street Map grau":osm_bw,
  };
 
  // marker
