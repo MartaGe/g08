@@ -11,7 +11,7 @@
 
     <body>   
 
-      <h1> Zu Fuß in Wien <br> Eine interaktive Karte zum Aufzeigen von Problemlagen </h1>
+      <h1> &#128694 Zu Fuß in Wien &#128694 <br> Eine interaktive Karte zum Aufzeigen von Problemlagen </h1>
 
       <div class = "topnav"> 
         <a href="index.html">Projektinfo</a>
@@ -31,25 +31,31 @@
         <hr>
         
         <!-- <a href="map.html" target="_blank" style="font-size: 2em;"> Hier geht es zu einer interaktiven Karte </a> -->
+    
+        <br>
+        <p>Seit März 2020 hat wohl für viele die nähere Wohnumgebung an Bedeutung gewonnen. Auch das zu Fuß gehen hat, zumindest für uns, einen wesentlichen höheren Stellenwert erlangt. Neben der Attraktivität der alltäglichen Wege sowie der Spazierwege, stellt sich vor allem die Frage nach dem Platz. Oftmals verschmälern Schilder, Stromkästen, E-Roller, schrägparkende Autos, die in den Gehsteig ragen, oder ganz einfach zu schmale Gehsteige den Platz zum Flanieren oder ganz einfach zum Ausweichen. Was denkst du ist die eigens gesetzte Zielvorgabe für Mindestgehsteigbreiten der Stadt Wien?</p>
+        <!-- <button onclick='document.body.style.backgroundColor="CadetBlue";' > Drück mich um die Hintergrundfarbe zu ändern!   </button> -->
+        <br>
+        <button img id="image" onclick="ShowImage()" > Drück mich, um die Mindestgehsteigbreite zu erfahren!   </button>
+        <script>
+            function ShowImage() {
+                document.getElementById("image").innerHTML = "<img src='img/fassmann.jpg' alt='2m' height='300px'/>"
+            }
+        </script>
+        <br>
+        <p>Das Ziel einer Mindestgehsteigbreite von 2.0 Metern wurde bereits im Jahr 2015 im Fachkonzept Mobilität festgesetzt (2).</p>
+        <br>
+        <h4>Quellen</h4>
+        <p>(1) </p>
+        <p>(2) Magistratsabteilung 18 – Stadtentwicklung und Stadtplanung (2015): Fachkonzept Mobilität. Wien. Seite 49. <a href="https://www.wien.gv.at/stadtentwicklung/studien/pdf/b008390b.pdf" target="_blank">https://www.wien.gv.at/stadtentwicklung/studien/pdf/b008390b.pdf</a></p>
+        <br>
+        <h4>Bildquellen</h4>
+        <p>Bild "1FassmannAbstand" <a href="https://twitter.com/platzfuerwien/status/1351088193798602760" target="_blank">https://twitter.com/platzfuerwien/status/1351088193798602760</a> </p>
+        <br>
         
-        <h2>Hier wirst Fakten zum zu Fuß gehen in Wien finden &#128694</h2>
 
-        <h3>Beispielfoto</h3>
-        <img src="img/fassmann.jpg" alt="2m" height="300px">
         <br>
-        <a href="https://twitter.com/platzfuerwien/status/1351088193798602760" target="_blank">Hier findest du die Quelle zum Link</a>
-        <br>
-        <br>
-        <br>
-        <button onclick='document.body.style.backgroundColor="CadetBlue";' > Drück mich!   </button>
-        <br>
-        <br>
-        <button onclick="document.getElementById('fassmann').innerHTML = ' 2 Meter (entspricht 1 Fassmann)'" > Drück mich, um die im Fachkonzept Mobilität der Stadt Wien festgelegte Mindestgehsteigbreite zu erfahren!   </button>
-        <p id="fassmann"></p>
-        <br>
-        <br>
-
-        <a href="impressum.html" target="_blank"> Impressum </a>
+        <a href="impressum.html" target="_blank"> Hier geht es zum Impressum </a>
 
     </body>
 </html>
