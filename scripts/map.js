@@ -74,8 +74,12 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
 // Problemstellen        
 var Problemstellen = L.geoJSON().addTo(map);
 $.getJSON('data/problemstelle.geojson',function(result){
-    Problemstellen.addData(result);
+    Problemstellen.addData(result).bindPopup('<b>Art des Problems</b><br>Objekt am Gehsteig 
+        <img src = 'document.getElementsByName(f.properties.name))' style="width:75%;">');;
            });   
+
+
+// Es funktioniert mit .bindPopup ein Bild und Kommentar anzuhängen
 
 
 
@@ -94,5 +98,5 @@ $.getJSON('data/problemstelle.geojson',function(result){
             collapsed:false,
             }).addTo(map);
 
- s
+
 
