@@ -73,17 +73,20 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
                 
 // Problemstellen        
 var Problemstellen = L.geoJSON().addTo(map);
-$.getJSON('data/problemstelle.geojson',function(result){
-    Problemstellen.addData(result).bindPopup('<b>Art des Problems</b><br>Objekt am Gehsteig 
-        <img src = 'document.getElementsByName(f.properties.name))' style="width:75%;">');;
-           });   
+$.getJSON('data/problemstelle.geojson',function(result) {
+    Problemstellen.addData(result)}
+    );
+
+Problemstellen.bindPopup("hier kommt das Popu-up")
+
+// function onEachFeature(feature, Problemstellen) {
+//    take (feature.properties.name)
+// }
 
 
-// Es funktioniert mit .bindPopup ein Bild und Kommentar anzuhängen
 
 
-
- // Layer Control
+ // Layer Control */
 
  var layermap = {
     "<img src='img/wohnstrasse_legende.PNG' height='20px' /> <span class= 'wohnstrassen'>Wohnstrassen</span>" : wohnstrassen,
