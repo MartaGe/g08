@@ -22,25 +22,19 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
 
  var ownicon = L.icon({
      iconUrl: 'img/icon.png',
-     iconSize: [50,50],
+     iconSize: [18,25],
      iconAnchor:[0,0],
      popupAnchor:  [-3, -76]
  });
-        
- var marker1 = L.marker([48.21798199057435,16.37907028198242], {icon: ownicon}).bindPopup('<b>Art des Problems</b><br>Gehweg zugeparkt');
- var marker2 = L.marker([48.17791446461507,16.33581429719925]).bindPopup('<b>Art des Problems</b><br>Gehsteig zu schmal');
- var marker3 = L.marker([48.17813445579481,16.38831853866577]).bindPopup('<b>Art des Problems</b><br>Katastrophe');
- var marker4 = L.marker([48.21008,16.35203]).bindPopup('<b>Art des Problems</b><br>Objekt am Gehsteig <img src="img/gehsteig1.jpg" style="width:75%;">');
+
+//  MARKER ALT 
+//  var marker1 = L.marker([48.21798199057435,16.37907028198242], {icon: ownicon}).bindPopup('<b>Art des Problems</b><br>Gehweg zugeparkt');
+//  var marker2 = L.marker([48.17791446461507,16.33581429719925]).bindPopup('<b>Art des Problems</b><br>Gehsteig zu schmal');
+//  var marker3 = L.marker([48.17813445579481,16.38831853866577]).bindPopup('<b>Art des Problems</b><br>Katastrophe');
+//  var marker4 = L.marker([48.21008,16.35203]).bindPopup('<b>Art des Problems</b><br>Objekt am Gehsteig <img src="img/gehsteig1.jpg" style="width:75%;">');
 
  
- var places = L.layerGroup([marker1,marker2,marker3,marker4]).addTo(map);
-
-
- // stand alone Pop-up (z.B. für Anleitung)
- var popup = L.popup()
-     .setLatLng([48.2,16.33])
-     .setContent("Klicke auf die Marker um die <br> Art des Problems zu erfahren")
-     .openOn(map);
+//  var places = L.layerGroup([marker1,marker2,marker3,marker4]).addTo(map);
 
 
 // Begegnungszonen
@@ -65,47 +59,26 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
         });
 
 // // Gehsteigbreiten mind. 2m --- ANMERKUNG: Dauert ziemlich lang zum laden
-// var gehsteig2m = L.geoJSON().addTo(map)
-// $.getJSON('data/gehsteig2m.geojson',function(result){
-//     gehsteig2m.addData(result);
-//     gehsteig2m.setStyle({color:"Yellow",opacity:"0.5",weight:"1"})
-//         });
-                
-// Problemstellen        
 
-$.getJSON('data/WOG_Meli.geojson',function(data) {
+                
+// Problemstellen  mit Popups  
+
+var Problemstellen = $.getJSON('data/WOG_Meli.geojson',function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature,latlng) {
             function problemstellen (feature,layer) {}
             return L.marker(latlng,{icon:ownicon});},
 
             onEachFeature: function(feature, layer) {
-                layer.bindPopup((layer)=>problem_popup(layer));
+                layer.bindPopup((layer)=>problem_popup(layer))
             }
     }).addTo(map);});
-    
-    
-    function problem_popup(layer){
+
+
+function problem_popup(layer){
         console.log(layer);
-        return '<img src="'img/fotos' + layer.feature.properties.img " style="width:108px;height:108px">'}
-
-      
-    
-
-// $.getJSON("data/hindernisse.geojson",function(data){
-//     L.geoJson(data, {
-//       pointToLayer: function(feature,latlng){
-//       function hindernisLayer (feature, layer) {}
-//       return L.marker(latlng,{icon: hindernisIcon});}, 
-      
-//       onEachFeature: function(feature, layer) {
-//       layer.bindPopup((layer)=>hindernisPopup(layer));
-//     ;}}).addTo(map);});
-
-
-
-
-
+        return '<img src="'+ layer.feature.properties.name+'" style="width:108px;height:108px">'};    
+       
 
  // Layer Control */
 
@@ -113,12 +86,11 @@ $.getJSON('data/WOG_Meli.geojson',function(data) {
     "<img src='img/wohnstrasse_legende.PNG' height='20px' /> <span class= 'wohnstrassen'>Wohnstrassen</span>" : wohnstrassen,
     "<img src='img/begegnungszone.PNG' height='20px'/> <span class= 'begegnungszonen'>Begegnungszonen</span>" : begegnungszonen,
     "<img src='img/fussgaengerzone.PNG' height='20px'/> <span class= 'fussgaengerzone'>Fußgängerzonen</span>" : fussgaengerzone,
-    // "Gehsteig mindestens 2m breit": gehsteig2m
      };
 
  L.control.layers(baseMaps,layermap,{
             position: "topright",
-            collapsed:false,
+            collapsed: false,
             }).addTo(map);
 
 
