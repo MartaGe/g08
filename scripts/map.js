@@ -43,12 +43,11 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
      .openOn(map);
 
 
-
 // Begegnungszonen
 var begegnungszonen = L.geoJSON().addTo(map);
 $.getJSON('data/begegnungszonen.geojson',function(result){
          begegnungszonen.addData(result);
-         begegnungszonen.setStyle({color:"Orange"})
+         begegnungszonen.setStyle({color:"Orange",opacity:"2"})
                 });   
 
 // Fußgängerzonen
@@ -80,7 +79,6 @@ $.getJSON('data/problemstelle.geojson',function(result){
 
 
 
-
  // Layer Control
 
  var layermap = {
@@ -91,6 +89,11 @@ $.getJSON('data/problemstelle.geojson',function(result){
     // "Gehsteig mindestens 2m breit": gehsteig2m
      };
 
- L.control.layers(baseMaps,layermap).addTo(map);
+ L.control.layers(baseMaps,layermap,{
+            position: "topright",
+            collapsed:false, 
+            "<img/> <span"
+            }).addTo(map);
 
+        {"<img src='my-layer-icon' /> <span class='my-layer-item'>My Layer</span>": myLayer}
 
