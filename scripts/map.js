@@ -72,16 +72,37 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
 //         });
                 
 // Problemstellen        
-var Problemstellen = L.geoJSON().addTo(map);
-$.getJSON('data/problemstelle.geojson',function(result) {
-    Problemstellen.addData(result)}
-    );
 
-Problemstellen.bindPopup("hier kommt das Popu-up")
+$.getJSON('data/WOG_Meli.geojson',function(data) {
+    L.geoJSON(data, {
+        pointToLayer: function(feature,latlng) {
+            function problemstellen (feature,layer) {}
+            return L.marker(latlng,{icon:ownicon});},
 
-// function onEachFeature(feature, Problemstellen) {
-//    take (feature.properties.name)
-// }
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup((layer)=>problem_popup(layer));
+            }
+    }).addTo(map);});
+    
+    
+    function problem_popup(layer){
+        console.log(layer);
+        return '<img src="'img/fotos' + layer.feature.properties.img " style="width:108px;height:108px">'}
+
+      
+    
+
+// $.getJSON("data/hindernisse.geojson",function(data){
+//     L.geoJson(data, {
+//       pointToLayer: function(feature,latlng){
+//       function hindernisLayer (feature, layer) {}
+//       return L.marker(latlng,{icon: hindernisIcon});}, 
+      
+//       onEachFeature: function(feature, layer) {
+//       layer.bindPopup((layer)=>hindernisPopup(layer));
+//     ;}}).addTo(map);});
+
+
 
 
 
@@ -92,7 +113,6 @@ Problemstellen.bindPopup("hier kommt das Popu-up")
     "<img src='img/wohnstrasse_legende.PNG' height='20px' /> <span class= 'wohnstrassen'>Wohnstrassen</span>" : wohnstrassen,
     "<img src='img/begegnungszone.PNG' height='20px'/> <span class= 'begegnungszonen'>Begegnungszonen</span>" : begegnungszonen,
     "<img src='img/fussgaengerzone.PNG' height='20px'/> <span class= 'fussgaengerzone'>Fußgängerzonen</span>" : fussgaengerzone,
-    "Problemstellen": Problemstellen,
     // "Gehsteig mindestens 2m breit": gehsteig2m
      };
 
