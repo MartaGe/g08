@@ -15,7 +15,7 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
 
  var baseMaps = {
      "Open Street Map":osm,
-     "OSM grau":osm_bw
+     "OSM grau":osm_bw,
  };
 
  // marker
@@ -63,7 +63,8 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
                 
 // Problemstellen  mit Popups  
 
-var Problemstellen = $.getJSON('data/WOG_Meli.geojson',function(data) {
+var Problemst =  L.geoJSON().addTo(map)
+ $.getJSON('data/WOG_Meli.geojson',function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature,latlng) {
             function problemstellen (feature,layer) {}
@@ -77,15 +78,16 @@ var Problemstellen = $.getJSON('data/WOG_Meli.geojson',function(data) {
 
 function problem_popup(layer){
         console.log(layer);
-        return '<img src="'+ layer.feature.properties.name+'" style="width:108px;height:108px">'};    
+        return '<img src="'+ layer.feature.properties.name+'" style="width:302.4px;height:402.2px">'};    
        
 
  // Layer Control */
 
  var layermap = {
-    "<img src='img/wohnstrasse_legende.PNG' height='20px' /> <span class= 'wohnstrassen'>Wohnstrassen</span>" : wohnstrassen,
+    "<img src='img/wohnstrasse_legende.PNG' height='20px' /> <span class= 'wohnstrassen'>Wohnstraßen</span>" : wohnstrassen,
     "<img src='img/begegnungszone.PNG' height='20px'/> <span class= 'begegnungszonen'>Begegnungszonen</span>" : begegnungszonen,
     "<img src='img/fussgaengerzone.PNG' height='20px'/> <span class= 'fussgaengerzone'>Fußgängerzonen</span>" : fussgaengerzone,
+    "<img src='img/icon.png' height='20px'/> <span class= 'Problemstellen'>Problemstellen</span>" : Problemst,
      };
 
  L.control.layers(baseMaps,layermap,{
