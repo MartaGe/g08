@@ -76,9 +76,11 @@ var Problemst =  L.geoJSON().addTo(map)
     }).addTo(map);});
 
 
+
 function problem_popup(layer){
         console.log(layer);
-        return '<img src="'+ layer.feature.properties.name+'" style="width:302.4px;height:402.2px">'};    
+        return '<p style="color:black"><b>Art der Problemstelle</b></p><p style="color:black">'+layer.feature.properties.cat1+'</p><p style="color:black">'+layer.feature.properties.cat2+'</p><img src="'+ layer.feature.properties.name+'" style="width:302.4px;height:402.2px">';
+            };    
        
 
  // Layer Control */
