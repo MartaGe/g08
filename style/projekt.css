@@ -9,11 +9,6 @@
        }
 
  /* Styling Links in Navigationsleiste */
-      .topnav a.active {
-        background-color: #046daa;
-        color: rgb(255, 255, 255);
-      }
-
       .topnav a {
         float: left;
         display: block;
@@ -29,7 +24,7 @@
       }
 
       .topnav a.active {
-        background-color: #046daa;
+        background-color: rgb(102, 7, 46);
         color: rgb(255, 255, 255);
       }
     
