@@ -4,12 +4,17 @@
     }
 /* Navigationsleiste oben */
     .topnav {
-        overflow: hidden;
         background-color:   rgb(187, 27, 94);
+        overflow: hidden;
        }
 
  /* Styling Links in Navigationsleiste */
-     .topnav a {
+      .topnav a.active {
+        background-color: #046daa;
+        color: rgb(255, 255, 255);
+      }
+
+      .topnav a {
         float: left;
         display: block;
         color: #f2f2f2;
@@ -20,12 +25,12 @@
 
       .topnav a:hover {
         background-color: #ddd;
-        color: black;
+        color: rgb(187, 27, 94);
       }
 
       .topnav a.active {
         background-color: #046daa;
-        color: white;
+        color: rgb(255, 255, 255);
       }
     
     h1 {
