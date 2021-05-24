@@ -13,9 +13,18 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
                  attribution: '©<ahref="http://osm.org/copyright">OpenStreetMap</a> contributors' }
  ).addTo(map); 
 
+ var MyBingMapsKey = 'Asnr2L-5w4YfeviwxdJn2vWQbwTRnNGMMQaK84XEMvj4Ra9jIpz4PY5-BCkWDAQ2';
+ var bing_attribution = `© 2021 Microsoft Corporation, © 2021 Maxar, ©CNES (2021) Distribution Airbus DS`;
+
+ var bing_options_aerial = {"bingMapsKey" : MyBingMapsKey, "imagerySet" : 'Aerial',
+                            "attribution" : bing_attribution  };
+
+ var bing_aerial = L.tileLayer.bing(MyBingMapsKey);
+
  var baseMaps = {
      "Open Street Map bunt":osm,
      "Open Street Map grau":osm_bw,
+     "Satelitenbild": bing_aerial,
  };
 
  // marker
