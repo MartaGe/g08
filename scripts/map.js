@@ -64,7 +64,7 @@ $.getJSON('data/wohnstrassen.geojson',function(result){
 // Problemstellen  mit Popups  
 
 var Problemst =  L.geoJSON().addTo(map)
- $.getJSON('data/WOG_Meli.geojson',function(data) {
+ $.getJSON('data/orte.geojson',function(data) {
     L.geoJSON(data, {
         pointToLayer: function(feature,latlng) {
             function problemstellen (feature,layer) {}
