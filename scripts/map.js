@@ -19,12 +19,12 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
  var bing_options_aerial = {"bingMapsKey" : MyBingMapsKey, "imagerySet" : 'Aerial',
                             "attribution" : bing_attribution  };
 
- var bing_aerial = L.tileLayer.bing(MyBingMapsKey);
+ var bing_aerial = L.tileLayer.bing(bing_options_aerial);
 
  var baseMaps = {
      "Open Street Map bunt":osm,
      "Open Street Map grau":osm_bw,
-     "Satelitenbild": bing_aerial,
+     "Satellitenbild": bing_aerial,
  };
 
  // marker
@@ -33,7 +33,7 @@ var map= L.map('Karte').setView([48.19722537806256, 16.37015461921692], 12.2);
      iconUrl: 'img/icon.png',
      iconSize: [18,25],
      iconAnchor:[0,0],
-     popupAnchor:  [-3, -76]
+     popupAnchor:  [0, 0]
  });
 
 //  MARKER ALT 
